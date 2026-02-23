@@ -18,6 +18,7 @@ export function ImageCard({ uri, orientation = 'landscape' }: ImageCardProps) {
           borderRadius: 8,
           aspectRatio: ratioFor(orientation)
         }}
+        placeholder={require('@assets/gifs/spinner.gif')}
         source={{ uri }}
         contentFit="cover"
       />
