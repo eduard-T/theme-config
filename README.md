@@ -1,50 +1,78 @@
-# Welcome to your Expo app 👋
+# Home Screen Configurator
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A lightweight React Native app built with Expo and TypeScript that dynamically renders a home screen based on a loaded JSON configuration file.
 
-## Get started
+---
 
-1. Install dependencies
+## Getting Started
 
+### Prerequisites
+
+- [Node.js](https://nodejs.org/) (LTS recommended)
+- [Expo CLI](https://docs.expo.dev/get-started/installation/)
+- The [Expo Go](https://expo.dev/client) app on your iOS or Android device, or a simulator/emulator
+
+### Installation
+
+1. Install dependencies:
    ```bash
    npm install
    ```
 
-2. Start the app
-
+2. Start the development server:
    ```bash
    npx expo start
    ```
 
-In the output, you'll find options to open the app in a
+3. Scan the QR code with Expo Go (Android) or the Camera app (iOS), or press `i` / `a` to open in a simulator.
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+---
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+## Switching Configuration Files
 
-## Get a fresh project
+The app ships with three JSON configuration files representing different "brands". You can switch between them at runtime without restarting the app:
 
-When you're ready, run:
+1. Tap the **Settings** icon in the bottom right corner of the home screen.
+2. In the settings modal, select a brand from the list.
+3. The home screen will immediately re-render with the selected configuration applied and dismiss the modal.
 
-```bash
-npm run reset-project
+Each brand maps to a local config file under the `configs/` directory. To add a new configuration, create a new JSON file in that directory following the existing structure and register it in the brand list.
+
+---
+
+## Project Structure
+
+```
+├── app/                  # Expo Router route files (thin, logic-free)
+├── configs/              # JSON configuration files (one per brand)
+├── core/
+│   ├── assets/           # Shared static assets
+│   ├── components/       # Shared/reusable UI components
+│   ├── hooks/            # Shared utility hooks
+│   └── providers/        # React Context providers
+└── screens/              # Presentation logic with screen-specific components
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+---
 
-## Learn more
+## Approach
 
-To learn more about developing your project with Expo, look at the following resources:
+The primary goal was to keep route files thin and free of presentation logic. All screen-level UI lives in the `screens/` directory and is simply referenced by the corresponding route file. Files are organized by domain — `configs/` for configuration data, `core/` for anything shared across the app (components, hooks, providers, and assets), and `screens/` for presentation.
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+State management is handled via React Context. On startup, the app loads the default JSON configuration and stores it in context. When the user switches brands via the settings modal, the context state is updated and the home screen re-renders automatically to reflect the new configuration.
 
-## Join the community
+Styling uses React Native's built-in `StyleSheet` API — there was no justification for introducing a third-party styling solution given the scope of the project.
 
-Join our community of developers creating universal apps.
+---
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+## Considerations
+
+- Both the home screen and the options on the settings screen are wrapped in a `ScrollView` to ensure content remains accessible on smaller devices or when system font sizes are increased.
+- A `SafeAreaView` wraps the home screen to keep content within safe display boundaries across devices with notches or home indicators.
+
+---
+
+## Assumptions
+
+- Image URLs provided in the configuration are expected to be reliably available. A placeholder loader is shown while images are fetching, but no heavy error-handling or fallback strategy has been implemented beyond that.
+- The call-to-action button link is treated as an external URL and opens in the device's default browser. It was not intended for internal app navigation.
