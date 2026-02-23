@@ -1,0 +1,26 @@
+{
+  "carousel": {
+    "images": [
+      "https://images.unsplash.com/photo-1683115765489-e0ab7cf1daf1?q=80&w=1287&auto=format",
+      "https://images.unsplash.com/photo-1599734959936-288721c155e2?q=80&w=1287&auto=format",
+      "https://images.unsplash.com/photo-1722507289084-546396432aab?q=80&w=1287&auto=format",
+      "https://images.unsplash.com/photo-1610890942103-64857a2ede51?q=80&w=1365&auto=format",
+      "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1320&auto=format",
+      "https://images.unsplash.com/photo-1589049253174-4b8fd0e27d4c?q=80&w=1287&auto=format",
+      "https://images.unsplash.com/photo-1765828593022-606b67fe25da?q=80&w=1336&auto=format"
+    ],
+    "display": "portrait"
+  },
+  "textArea": {
+    "title": "Concrete Culture",
+    "description": "Fashion born in the city, worn everywhere.",
+    "titleColor": "#FFBF00",
+    "descriptionColor": "#F5F5DC"
+  },
+  "callToAction": {
+    "label": "Discover",
+    "link": "https://www.deadstock.ca/",
+    "buttonColor": "#FADA5E",
+    "labelColor": "#040404"
+  }
+}

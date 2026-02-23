@@ -1,0 +1,22 @@
+{
+  "carousel": {
+    "images": [
+      "https://images.unsplash.com/photo-1695686331766-16a2c3c2c382?q=80&w=2342&auto=format",
+      "https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=2340&auto=format",
+      "https://images.unsplash.com/photo-1515955656352-a1fa3ffcd111?q=80&w=2340&auto=format"
+    ],
+    "display": "landscape"
+  },
+  "textArea": {
+    "title": "City Steps",
+    "description": "Footwear for long nights and longer days.",
+    "titleColor": "#FEFEFE",
+    "descriptionColor": "#D4D4D4"
+  },
+  "callToAction": {
+    "label": "Find yours",
+    "link": "https://www.nike.com/ca/",
+    "buttonColor": "#010101",
+    "labelColor": "#F0F0F0"
+  }
+}
