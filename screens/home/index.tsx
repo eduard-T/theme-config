@@ -1,4 +1,4 @@
-import { SettingsTrigger } from '@components/shortcut'
+import { FloatingModalButton } from '@components/actions'
 import { useConfig } from '@providers/JsonConfigProvider'
 import { ScrollView, StyleSheet, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
@@ -31,7 +31,7 @@ export function HomeScreen() {
         </View>
         <ImageCarousel key={id} />
       </ScrollView>
-      <SettingsTrigger />
+      <FloatingModalButton icon="settings" route='/settings' />
     </SafeAreaView>
   )
 }

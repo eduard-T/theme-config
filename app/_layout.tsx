@@ -11,7 +11,7 @@ export default function RootLayout() {
   return (
     <ThemeProvider value={DarkTheme}>
       <JsonConfigProvider>
-        <StatusBar style="auto" />
+        <StatusBar style="light" />
         <Stack
           initialRouteName='index'
           screenOptions={{ contentStyle: { backgroundColor: '#14281E' }}}

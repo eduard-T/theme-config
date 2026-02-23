@@ -1,6 +1,10 @@
 import { Body, Heading } from '@components/typography'
+import { Feather } from '@expo/vector-icons'
 import type { ConfigKey } from '@providers/JsonConfigProvider'
-import { Platform, ScrollView, StyleSheet, View } from 'react-native'
+import { router } from 'expo-router'
+import { StatusBar } from 'expo-status-bar'
+import { Platform, Pressable, ScrollView, StyleSheet } from 'react-native'
+import { SafeAreaView } from 'react-native-safe-area-context'
 import { ConfigOption } from './components/ConfigOption'
 
 // constants
@@ -15,10 +19,13 @@ export function SettingsScreen() {
 
   // render
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
+      <StatusBar style={Platform.select({ ios: 'light', android: 'dark' })} />
+      <Pressable style={styles.dismissButton} onPress={() => router.dismiss()}>
+        <Feather name='x' size={32} />
+      </Pressable>
       <Heading>Configuration Settings</Heading>
       <Body>Select an option to swap the configuration file being used by the application. The changes will apply automatically and dismiss this modal.</Body>
-      <Body>If you changed your mind and want to exit,{Platform.OS === 'android' && ' press the back button or'} simply swipe down.</Body>
       <ScrollView style={styles.optionContainer} contentContainerStyle={styles.optionContent}>
         {CONFIG_OPTIONS.map(([key, label]) => (
           <ConfigOption
@@ -28,7 +35,7 @@ export function SettingsScreen() {
           />
         ))}
       </ScrollView>
-    </View>
+    </SafeAreaView>
   )
 }
 
@@ -39,6 +46,11 @@ const styles = StyleSheet.create({
     gap: 12,
     paddingVertical: 24,
     paddingHorizontal: 16,
+  },
+  dismissButton: {
+    alignSelf: 'flex-end',
+    paddingRight: 8,
+    paddingBottom: 16,
   },
   optionContainer: {
     borderTopWidth: StyleSheet.hairlineWidth,
